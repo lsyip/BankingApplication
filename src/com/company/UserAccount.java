@@ -110,15 +110,14 @@ public class UserAccount{
             System.out.println("Enter withdraw amount: ");
             withdrawAmount = keyboard.nextDouble();
 
-            while (withdrawAmount > userBalance) {
-                System.out.println("Insufficient funds available. Enter withdraw amount: ");
-                withdrawAmount = keyboard.nextDouble();
-            }
-
             //Find the user account
             for (int i = 0; i < totalBalance.size(); i++) {
                 if (user.equals(username.get(i)) && pass.equals(password.get(i))) {
                     userBalance = totalBalance.get(i);
+                    while (withdrawAmount > userBalance) {
+                        System.out.println("Insufficient funds available. Enter withdraw amount: ");
+                        withdrawAmount = keyboard.nextDouble();
+                    }
                     double newBalance = userBalance - withdrawAmount;
                     totalBalance.set(i, newBalance);
                     System.out.printf("Balance: $%.2f \n", newBalance);

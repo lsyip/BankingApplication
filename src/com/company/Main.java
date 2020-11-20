@@ -62,12 +62,12 @@ public class Main {
                         userInput = kbInput.nextLine();
                         if(userInput.equalsIgnoreCase("1")){
 
-                            System.out.println("deposit method goes here");
+                            //System.out.println("deposit method goes here");
                             ua.depositMethod();
 
                         }else if(userInput.equalsIgnoreCase("2")){
 
-                            System.out.println("withdraw method goes here");
+                            //System.out.println("withdraw method goes here");
                             ua.withdrawMethod();
 
                         }else if(userInput.equalsIgnoreCase("3")){
