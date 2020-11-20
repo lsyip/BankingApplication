@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class UserAccount{
 
@@ -14,7 +15,8 @@ public class UserAccount{
     //Variables
     String user;
     String pass;
-    double n = 0;
+    double initialBalance;
+    //double n = 0;
 
 
     public UserAccount(){
@@ -24,12 +26,14 @@ public class UserAccount{
     public void getUsers(String un, String p){
         user = un;
         pass = p;
+        initialBalance = 0;
     }
 
     public void setUserAccount(){
         //adding to an arrayList is simply .add()
         username.add(user);
         password.add(pass);
+        totalBalance.add(0.0); // initialize user account with balance of 0
     }
 
     //   .get allows you to retrieve the value in the arrayList -> same as doing array[2] = "hello"
@@ -73,25 +77,62 @@ public class UserAccount{
 
     //deposit method here
 
-    //withdraw method here
+    public void depositMethod() {
+        Scanner keyboard = new Scanner(System.in);
 
+        System.out.println("Enter deposit amount: ");
+        double depositAmount = keyboard.nextDouble();
+        double userBalance;
+
+        for (int i = 0; i < totalBalance.size(); i++) {
+            if (user.equals(username.get(i)) && pass.equals(password.get(i))) {
+                userBalance = (totalBalance.get(i));
+                double newBalance = userBalance + depositAmount;
+                totalBalance.set(i, newBalance);
+                System.out.printf("Balance: $%.2f \n", newBalance);
+            }
+
+        }
+    }
+
+
+    //withdraw method here
+    public void withdrawMethod() {
+            Scanner keyboard = new Scanner(System.in);
+
+            System.out.println("Enter withdraw amount: ");
+            double withdrawAmount = keyboard.nextDouble();
+            double userBalance;
+            //Find the user account
+            for (int i = 0; i < totalBalance.size(); i++) {
+                if (user.equals(username.get(i)) && pass.equals(password.get(i))) {
+                    userBalance = totalBalance.get(i);
+                    double newBalance = userBalance - withdrawAmount;
+                    totalBalance.set(i, newBalance);
+                    System.out.printf("Balance: $%.2f \n", newBalance);
+                }
+            }
+        }
     //Return username method here
 
 
     //This is temporary to test the checkBalance method, this will be replaced with the deposit and withdraw methods
+    /*
     public void eee(){
         double num = 100;
         n += num;
         totalBalance.add(n);
         System.out.println(totalBalance.size());
     }
+    */
 
     //This method allows for the correct balance to be shown for the corresponding account
     //totalBalance.get(0) == username.get(0) and so on
     public void checkBalance(){
         for(int i = 0; i < totalBalance.size(); i++){
             if(user.equals(username.get(i)) && pass.equals(password.get(i))){
-                System.out.println(totalBalance.get(i));
+                double userBalance = totalBalance.get(i);
+                System.out.printf("Balance: $ %.2f \n", userBalance);
             }
         }
     }

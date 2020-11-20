@@ -16,7 +16,7 @@ public class Main {
         String password;
         boolean isDone = false;
 
-        while(isDone != true){
+        while(!isDone){
             System.out.println("Select 1 to create a new account, 2 for returning users, 3 to exit");
             userInput = kbInput.nextLine();
             if(userInput.equalsIgnoreCase("1")){
@@ -35,14 +35,16 @@ public class Main {
                     userInput = kbInput.nextLine();
                     if(userInput.equalsIgnoreCase("1")){
 
-                        System.out.println("deposit method goes here");
+                        //System.out.println("deposit method goes here");
+                        ua.depositMethod();
 
                     }else if(userInput.equalsIgnoreCase("2")){
 
-                        System.out.println("withdraw method goes here");
+                        //System.out.println("withdraw method goes here");
+                        ua.withdrawMethod();
 
                     }else if(userInput.equalsIgnoreCase("3")){
-                        ua.eee();
+                        //ua.eee();
                         ua.checkBalance();
                     }
                 }
@@ -55,10 +57,32 @@ public class Main {
                 if(ua.checkUserAccount()){
                     System.out.println("\n" + "Welcome " + username.substring(0,1).toUpperCase() + username.substring(1));
                     //Structure this block of code similar above in the new account block of code
+                    while (!isDone){
+                        System.out.println("Select 1 to deposit, 2 to withdraw, 3 to check balance, 4 to exit");
+                        userInput = kbInput.nextLine();
+                        if(userInput.equalsIgnoreCase("1")){
+
+                            System.out.println("deposit method goes here");
+                            ua.depositMethod();
+
+                        }else if(userInput.equalsIgnoreCase("2")){
+
+                            System.out.println("withdraw method goes here");
+                            ua.withdrawMethod();
+
+                        }else if(userInput.equalsIgnoreCase("3")){
+                            //ua.eee();
+                            ua.checkBalance();
+                        }else {
+                            System.out.println("Thank you for banking with us today.");
+                            isDone = true;
+                        }
+                    }
+
                 }else{
                     System.out.println("One of the information above was entered incorrectly. Please try again");
                 }
-            }else{
+            }else {
                 System.out.println("Thank you for banking with us today.");
                 isDone = true;
             }
