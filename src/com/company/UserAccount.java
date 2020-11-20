@@ -16,8 +16,13 @@ public class UserAccount{
     String user;
     String pass;
     double initialBalance;
+    double depositAmount;
+    double withdrawAmount;
+    double userBalance;
     //double n = 0;
 
+    //Scanner object to collect user input
+    Scanner keyboard = new Scanner(System.in);
 
     public UserAccount(){
 
@@ -78,11 +83,14 @@ public class UserAccount{
     //deposit method here
 
     public void depositMethod() {
-        Scanner keyboard = new Scanner(System.in);
 
         System.out.println("Enter deposit amount: ");
-        double depositAmount = keyboard.nextDouble();
-        double userBalance;
+        depositAmount = keyboard.nextDouble();
+
+        while (depositAmount < 0) {
+            System.out.println("Enter deposit amount: ");
+            depositAmount = keyboard.nextDouble();
+        }
 
         for (int i = 0; i < totalBalance.size(); i++) {
             if (user.equals(username.get(i)) && pass.equals(password.get(i))) {
@@ -98,11 +106,15 @@ public class UserAccount{
 
     //withdraw method here
     public void withdrawMethod() {
-            Scanner keyboard = new Scanner(System.in);
 
             System.out.println("Enter withdraw amount: ");
-            double withdrawAmount = keyboard.nextDouble();
-            double userBalance;
+            withdrawAmount = keyboard.nextDouble();
+
+            while (withdrawAmount > userBalance) {
+                System.out.println("Insufficient funds available. Enter withdraw amount: ");
+                withdrawAmount = keyboard.nextDouble();
+            }
+
             //Find the user account
             for (int i = 0; i < totalBalance.size(); i++) {
                 if (user.equals(username.get(i)) && pass.equals(password.get(i))) {
